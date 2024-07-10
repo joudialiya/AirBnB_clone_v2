@@ -19,8 +19,7 @@ def do_deploy(archive_path):
             basename = os.path.basename(archive_path)
             basename_no_ext = basename.split(".")[0]
             target_location = "/data/web_static/releases/"
-            + basename_no_ext
-            + "/"
+            target_location += basename_no_ext
             run("mkdir -p " + target_location)
             run("tar -xzf /tmp/" + basename + " -C " + target_location)
             run("rm /tmp/" + basename)
