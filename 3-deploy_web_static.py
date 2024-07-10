@@ -6,7 +6,7 @@ distributes an archive to the web servers
 
 from fabric.api import env, local, put, run
 from datetime import datetime
-from os.path import exists, isdir
+from os import path
 
 
 env.hosts = ['100.26.236.180', '100.25.163.248']
@@ -23,7 +23,7 @@ def do_pack():
             dt.hour,
             dt.minute,
             dt.second)
-        if not isdir("versions"):
+        if not path.isdir("versions"):
             local("mkdir -p versions")
         local("tar -cvzf {} web_static".format(archive_name))
         return archive_name
@@ -34,12 +34,12 @@ def do_pack():
 
 def do_deploy(archive_path):
     """ deploy the zip in the """
-    if exists(archive_path) is False:
+    if path.exists(archive_path) is False:
         return False
     else:
         try:
             put(archive_path, "/tmp/")
-            basename = basename(archive_path)
+            basename = path.basename(archive_path)
             basename_no_ext = basename.split(".")[0]
             target_location = "/data/web_static/releases/"
             target_location += basename_no_ext
