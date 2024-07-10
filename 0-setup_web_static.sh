@@ -52,8 +52,8 @@ server {
             try_files \$uri \$uri/ =404;
         }
         location /hbnb_static {
-            alias ${WEB_STATIC_CURRENT}
-            try_files \$uri \$uri/ =404;
+            alias ${WEB_STATIC_CURRENT};
+            index index.html
         }
 }" > "/etc/nginx/sites-available/default"
 
