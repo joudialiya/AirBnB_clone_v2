@@ -24,7 +24,7 @@ def do_deploy(archive_path):
             run("mkdir -p " + target_location)
             run("tar -xzf /tmp/" + basename + " -C " + target_location)
             run("rm /tmp/" + basename)
-            run("mv " + target_location + "web_static/" + target_location)
+            run("mv " + target_location + "web_static/* " + target_location)
             run("rm -rf " + target_location + "web_static")
             run("rm -rf /data/web_static/current")
             run("ln -s " + target_location + " /data/web_static/current")
