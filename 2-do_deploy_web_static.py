@@ -16,7 +16,7 @@ def do_deploy(archive_path):
     else:
         try:
             put(archive_path, "/tmp/")
-            basename = os.path.basename()
+            basename = os.path.basename(archive_path)
             basename_no_ext = basename.split(".")[0]
             target_location = "/data/web_static/releases/"
             + basename_no_ext
