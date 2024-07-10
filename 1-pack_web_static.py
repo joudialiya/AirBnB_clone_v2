@@ -3,12 +3,12 @@
 
 import os
 import datetime
-from fabric.api import run, local
+from fabric.api import local
 
 
 def do_pack():
     """We pack the web_static content"""
-    dt = datetime.datetime.now(datetime.UTC)
+    dt = datetime.datetime.utcnow()
     archive_name = "versions/web_static_{}{}{}{}{}{}.tgz".format(
         dt.year,
         dt.month,
