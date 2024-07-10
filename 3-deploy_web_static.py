@@ -13,23 +13,21 @@ env.hosts = ['100.26.236.180', '100.25.163.248']
 
 
 def do_pack():
-    """generates a tgz archive"""
-    try:
-        dt = datetime.utcnow()
-        archive_name = "versions/web_static_{}{}{}{}{}{}.tgz".format(
-            dt.year,
-            dt.month,
-            dt.day,
-            dt.hour,
-            dt.minute,
-            dt.second)
-        if not path.isdir("versions"):
-            local("mkdir -p versions")
-        local("tar -cvzf {} web_static".format(archive_name))
-        return archive_name
-    except Exception as e:
-        print(e)
+    """We pack the web_static content"""
+    dt = datetime.datetime.utcnow()
+    archive_name = "versions/web_static_{}{}{}{}{}{}.tgz".format(
+        dt.year,
+        dt.month,
+        dt.day,
+        dt.hour,
+        dt.minute,
+        dt.second)
+    if os.path.isdir("versions") is False:
+        if local("mkdir -p versions").failed is True:
+            return None
+    if local("tar -cvzf {} web_static".format(archive_name)).failed is True:
         return None
+    return archive_name
 
 
 def do_deploy(archive_path):
