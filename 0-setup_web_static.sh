@@ -4,15 +4,8 @@
 sudo apt-get update
 sudo apt-get -y install nginx
 
-DATA_FOLDER="/data"
-WEB_STATIC="${DATA_FOLDER}/web_static"
-WEB_STATIC_SHARED="${WEB_STATIC}/shared"
-WEB_STATIC_RELEASES="${WEB_STATIC}/releases"
-WEB_STATIC_TEST="${WEB_STATIC_RELEASES}/test"
-WEB_STATIC_CURRENT="${WEB_STATIC}/current"
-
-mkdir -p ${WEB_STATIC_TEST}
-mkdir -p ${WEB_STATIC_SHARED}
+mkdir -p /data/web_static/releases/test
+mkdir -p /data/web_static/shared/
 
 # we create th dummy file
 echo "
@@ -22,11 +15,11 @@ echo "
   <body>
     Holberton School
   </body>
-</html>" > "${WEB_STATIC_TEST}/index.html"
+</html>" > "/data/web_static/releases/test/index.html"
 # create symbolic link
-ln -sf ${WEB_STATIC_TEST} ${WEB_STATIC_CURRENT}
+ln -sf /data/web_static/releases/test/ /data/web_static/current
 
-chown -hR ubuntu:ubuntu ${DATA_FOLDER}
+chown -hR ubuntu:ubuntu /data
 
 echo "
 server {
@@ -39,7 +32,7 @@ server {
             try_files \$uri \$uri/ =404;
         }
         location /hbnb_static {
-            alias ${WEB_STATIC_CURRENT};
+            alias /data/web_static/current;
             index index.html;
         }
 }" > "/etc/nginx/sites-available/default"
