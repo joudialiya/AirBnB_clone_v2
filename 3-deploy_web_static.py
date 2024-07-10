@@ -15,7 +15,7 @@ env.hosts = ['100.26.236.180', '100.25.163.248']
 def do_pack():
     """generates a tgz archive"""
     try:
-        dt = datetime.datetime.utcnow()
+        dt = datetime.utcnow()
         archive_name = "versions/web_static_{}{}{}{}{}{}.tgz".format(
             dt.year,
             dt.month,
