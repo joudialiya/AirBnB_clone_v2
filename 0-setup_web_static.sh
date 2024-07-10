@@ -53,7 +53,7 @@ server {
         }
         location /hbnb_static {
             alias ${WEB_STATIC_CURRENT};
-            index index.html
+            index index.html;
         }
 }" > "/etc/nginx/sites-available/default"
 
