@@ -27,7 +27,7 @@ def do_deploy(archive_path):
             run("mv " + target_location + "web_static/* " + target_location)
             run("rm -rf " + target_location + "web_static")
             run("rm -rf /data/web_static/current")
-            run("ln -s " + target_location + " /data/web_static/current")
+            run("ln -sf " + target_location + " /data/web_static/current")
             print("New version deployed!")
             return True
         except Exception as e:
