@@ -23,7 +23,7 @@ chown -hR ubuntu:ubuntu /data
 
 cat /etc/nginx/sites-available/default | grep "location /hbnb_static"
 
-if [[ echo "$?" -ne 0 ]]; then
+if [[ $(echo "$?") -ne 0 ]]; then
 	sed -i "/server_name/a \\\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current;\n\t\tindex index.html;\n\t}" "/etc/nginx/sites-available/default"
 fi
 
