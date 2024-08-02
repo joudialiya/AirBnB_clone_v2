@@ -1,5 +1,8 @@
-import flask
+#!/usr/bin/python3
 '''Hello world app'''
+
+import flask
+
 
 app = flask.Flask(__name__, )
 
